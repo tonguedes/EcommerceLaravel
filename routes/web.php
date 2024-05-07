@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;
@@ -49,8 +50,17 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/products/{product}/edit', 'edit');
     Route::put('/products/{product}', 'update');
     Route::get('products/{product_id}/delete','destroy');
-    Route::get('/product-image/{product_image_id}/delete', 'destroyImage');
+    Route::put('/product-image/{product_image_id}/delete', 'destroyImage');
 
+});
+
+Route::controller(ColorController::class)->group(function () {
+    Route::get('/colors', 'index');
+    Route::get('/colors/create', 'create');
+    Route::post('/colors/create', 'store');
+    Route::get('/colors/{color}/edit', 'edit');
+    Route::put('/colors/{color_id}','update');
+    Route::get('/colors/{color}/delete',  'destroy');
 });
   //Route::get('category',[CategoryController::class, 'index']);
   //Route::get('category/create',[CategoryController::class, 'create']);
