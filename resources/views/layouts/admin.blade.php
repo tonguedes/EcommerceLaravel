@@ -7,6 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
       <!-- plugins:css -->
@@ -71,7 +72,7 @@
 
      <!-- End custom js for this page-->
 
-
+    @yield('scripts')
 
     @livewireScripts
     @stack('script')

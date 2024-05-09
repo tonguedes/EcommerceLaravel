@@ -52,6 +52,9 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('products/{product_id}/delete','destroy');
     Route::put('/product-image/{product_image_id}/delete', 'destroyImage');
 
+    Route::post('product-color/{prod_color_id}', 'updateProdColorQty');
+    Route::get('product-color/{product_color_id}/delete','deleteprodColor');
+
 });
 
 Route::controller(ColorController::class)->group(function () {
