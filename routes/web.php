@@ -25,6 +25,10 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 Route::get('/', [FrontendController::class, 'index'])->name('index');
+Route::get('/collections', [FrontendController::class, 'categories']);
+Route::get('/collections/{category_slug}', [FrontendController::class, 'products']);
+
+
 
 
 Auth::routes();
