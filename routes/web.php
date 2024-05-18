@@ -31,6 +31,7 @@ Route::get('/collections/{category_slug}', [FrontendController::class, 'products
 
 
 
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
