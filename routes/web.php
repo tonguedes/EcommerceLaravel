@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/collections', [FrontendController::class, 'categories']);
 Route::get('/collections/{category_slug}', [FrontendController::class, 'products']);
-
+Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::class, 'productView']);
 
 
 
