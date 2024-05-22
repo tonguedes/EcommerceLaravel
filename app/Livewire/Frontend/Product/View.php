@@ -11,7 +11,7 @@ use Livewire\Component;
 class View extends Component
 {
 
-    public $category, $product, $prodColorSelectedQuantity;
+    public $category, $product, $prodColorSelectedQuantity,$quantityCount=1;
 
     public function addToWishList($productId)
     {
@@ -69,6 +69,8 @@ class View extends Component
             $this->prodColorSelectedQuantity = "OutOfStock";
         }
     }
+
+
     public function render()
     {
         return view('livewire.frontend.product.view', [
@@ -76,5 +78,19 @@ class View extends Component
             'product' => $this->product
         ]);
 
+    }
+
+    public function incrementQuantity()
+    {  if( $this->quantityCount < 10){
+        $this->quantityCount++;
+    }
+
+    }
+
+    public function decrementQuantity()
+    {
+        if( $this->quantityCount > 1){
+            $this->quantityCount--;
+        }
     }
 }
