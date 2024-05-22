@@ -4,6 +4,9 @@
 
             <div class="row">
                 <div class="col-md-12">
+                    @if (session('message'))
+                    <h5 class="alert alert-success mb-2">{{ session('message') }}</h5>
+                @endif
                     <div class="shopping-cart">
 
                         <div class="cart-header d-none d-sm-none d-mb-block d-lg-block">
@@ -40,9 +43,14 @@
 
                                         <div class="col-md-4 col-12 my-auto">
                                             <div class="remove">
-                                                <a href="" class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i> Remove
-                                                </a>
+                                                <button type="button" wire:click="removeWishlistItem({{ $wishlistItem->id }})" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i>
+                                                    <span wire:loading.remove wire:target="removeWishlistItem({{ $wishlistItem->id }})">
+                                                         excluir
+                                                    </span>
+                                                    <span wire:loading wire:target="removeWishlistItem({{ $wishlistItem->id }})">Excluindo</span>
+
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

@@ -33,7 +33,7 @@ class LoginController extends Controller
      if(Auth::user()->role_as =='1'){
         return redirect('admin/dashboard')->with('message','Bem Vindo ao Dashboard');
      }else{
-         return  redirect('/home')->back()->with('status','Logado Com sucesso');;
+         return  redirect('/home')->with('status','Logado Com sucesso');
      }
     }
 

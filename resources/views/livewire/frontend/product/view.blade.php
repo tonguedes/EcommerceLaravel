@@ -9,12 +9,8 @@
                     {{ session('message') }}
 
                 </div>
-
             @endif
-
         </div>
-
-
         <div class="container">
             <div class="row">
                 <div class="col-md-5 mt-3">
