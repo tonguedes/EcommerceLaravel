@@ -32,7 +32,7 @@ Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::c
 
 
 Route::middleware(['auth'])->group(function (){
-    Route::get('wishlist',[WishlistController::class, 'index']);
+    Route::get('wishlist',[WishlistController::class,'index']);
 });
 
 

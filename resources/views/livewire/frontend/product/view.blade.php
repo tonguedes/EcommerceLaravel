@@ -3,7 +3,6 @@
         <div class="container">
 
             @if (session()->has('message'))
-
                 <div class="alert alert-success">
 
                     {{ session('message') }}
@@ -49,14 +48,13 @@
                                         </label>
                                     @endforeach
                                 @endif
-                                 <div>
+                                <div>
                                     @if ($this->prodColorSelectedQuantity == 'OutOfStock')
-                                    <label class="btn btn-sm py-1 mt-2 bg-danger">out of Stock</label>
-                                @elseif($this->prodColorSelectedQuantity > 0)
-                                    <label class="btn btn-sm py-1 mt-2 bg-success">In Stock</label>
-                                @endif
-                                 </div>
-
+                                        <label class="btn btn-sm py-1 mt-2 bg-danger">out of Stock</label>
+                                    @elseif($this->prodColorSelectedQuantity > 0)
+                                        <label class="btn btn-sm py-1 mt-2 bg-success">In Stock</label>
+                                    @endif
+                                </div>
                             @else
                                 @if ($product->quantity)
                                     <label class="btn btn-sm py-1 mt-2 bg-success">In Stock</label>
@@ -68,19 +66,24 @@
                         <div class="mt-2">
                             <div class="input-group">
                                 <span class="btn btn1" wire:click="decrementQuantity"><i class="fa fa-minus"></i></span>
-                                <input type="text" wire:model="quantityCount" value="{{ $this->quantityCount }}" readonly class="input-quantity" />
+                                <input type="text" wire:model="quantityCount" value="{{ $this->quantityCount }}"
+                                    readonly class="input-quantity" />
                                 <span class="btn btn1" wire:click="incrementQuantity"><i class="fa fa-plus"></i></span>
                             </div>
                         </div>
                         <div class="mt-2">
-                            <a href="" class="btn btn1"> <i class="fa fa-shopping-cart"></i> Add To Cart</a>
+
+                            <button type="button" wire:click="addToCart({{ $product->id }})" class="btn btn1">
+                                <i class="fa fa-shopping-cart"></i>Add To Cart
+                            </button>
+
                             <button type="button" wire:click="addToWishList({{ $product->id }})" class="btn btn1">
                                 <span wire:loading.remove wire:target="addToWishList">
                                     <i class="fa fa-heart"></i>Favoritos
                                 </span>
-                                <span  wire:loading wire:target="addToWishList" >Adicionando...</span>
+                                <span wire:loading wire:target="addToWishList">Adicionando...</span>
 
-                             </button>
+                            </button>
                         </div>
                         <div class="mt-3">
                             <h5 class="mb-0">Mini Descrição</h5>
