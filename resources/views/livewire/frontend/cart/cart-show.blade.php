@@ -64,13 +64,20 @@
                                     </div>
                                 </div>
                                 <div class="col-md-1 my-auto">
-                                    <label class="price">$ {{ $cartItem->product->selling_price *$cartItem->quantity }} </label>
+                                    <label class="price">$ {{ $cartItem->product->selling_price * $cartItem->quantity }} </label>
                                 </div>
                                 <div class="col-md-2 col-5 my-auto">
                                     <div class="remove">
-                                        <a href="" class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i> Remove
-                                        </a>
+                                        <button type="button"  wire:loading.attr='disabled' wire:click='removeCartItem({{ $cartItem->id }})' class="btn btn-danger btn-sm">
+                                            <span wire:loading.remove  wire:target='removeCartItem({{ $cartItem->id }})'>
+                                                <i class="fa fa-trash"></i> Remove
+                                            </span>
+
+                                            <span wire:loading  wire:target='removeCartItem({{ $cartItem->id }})'>
+                                                <i class="fa fa-trash"></i> Removendo
+                                            </span>
+
+                                        </button>
                                     </div>
                                 </div>
                             </div>
