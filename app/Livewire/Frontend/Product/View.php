@@ -74,31 +74,31 @@ class View extends Component
             // dd($productId);
             if ($this->product->where('id', $productId)->where('status', '0')->exists()) {
                 // Check for  product color quantity and add to cart
-                if($this->product->productColors()->count() > 1) {
-                    if($this->prodColorSelectedQuantity != NULL)
-                    {
+                if ($this->product->productColors()->count() > 1) {
+                    if ($this->prodColorSelectedQuantity != NULL) {
                         $productColor = $this->product->productColors()->where('id', $this->productColorId)->first();
 
-                        if ($productColor-> quantity > 0)
-                         {
+                        if ($productColor->quantity > 0) {
 
                             if ($productColor->quantity > $this->quantityCount) {
                                 //Insert product To cart
                                 Cart::create([
-                                   'user_id'=>auth()->user()->id,
-                                   'product_id'=>$productId,
-                                   'product_color_id' =>$this->productColorId,
-                                   'quantity'=>$this->quantityCount
+                                    'user_id' => auth()->user()->id,
+                                    'product_id' => $productId,
+                                    'product_color_id' => $this->productColorId,
+                                    'quantity' => $this->quantityCount
                                 ]);
                                 $this->dispatch('CartAddedUpdated');
                                 session()->flash('message', 'produto  color adicionado ao carrinho');
-                                   $this->dispatch('message',
-                           ['text' => 'product Added to Cart',
-                            'type'=>'success',
-                           'status'=>200
-                            ]);
-                            }
-                             else {
+                                $this->dispatch(
+                                    'message',
+                                    [
+                                        'text' => 'product Added to Cart',
+                                        'type' => 'success',
+                                        'status' => 200
+                                    ]
+                                );
+                            } else {
                                 $this->dispatch(
                                     'message',
                                     [
@@ -106,7 +106,7 @@ class View extends Component
                                         'type' => 'warning',
                                         'status' => 404
                                     ]
-                                    );
+                                );
 
                             }
 
@@ -128,41 +128,36 @@ class View extends Component
                         ]);*/
                     }
                 }
-                if(Cart::where('user_id',auth()->user()->id)->where('product_id',$productId)->exists())
-                {
+                if (Cart::where('user_id', auth()->user()->id)->where('product_id', $productId)->exists()) {
                     session()->flash('message', 'produto  ja  adicionado ao carrinho');
-                }
-                else
+                } else {
 
+                    if ($this->product->quantity > 0) {
+                        if ($this->product->quantity > $this->quantityCount) {
+                            //Insert product To cart
+                            Cart::create([
+                                'user_id' => auth()->user()->id,
+                                'product_id' => $productId,
 
-                {
-
-                if ($this->product->quantity > 0) {
-                    if ($this->product->quantity > $this->quantityCount) {
-                        //Insert product To cart
-                        Cart::create([
-                            'user_id'=>auth()->user()->id,
-                            'product_id'=>$productId,
-
-                            'quantity'=>$this->quantityCount
-                         ]);
-                         $this->emit('CartAddedUpdated');
-                           session()->flash('message', 'produto   adicionado ao carrinho');
+                                'quantity' => $this->quantityCount
+                            ]);
+                            $this->emit('CartAddedUpdated');
+                            session()->flash('message', 'produto   adicionado ao carrinho');
                             /*$this->dispatch('message',
                     ['text' => 'product Added to Cart',
                      'type'=>'success',
                     'status'=>200
                      ]);*/
-                    } else {
-                        /*$this->dispatch('message',
-                    ['text' => 'only'.$this->product->quantity.'Quantity Avaliable',
-                    'type'=>'warning',
-                    'status'=>404
-                   ]);*/
+                        } else {
+                            /*$this->dispatch('message',
+                        ['text' => 'only'.$this->product->quantity.'Quantity Avaliable',
+                        'type'=>'warning',
+                        'status'=>404
+                       ]);*/
 
+                        }
                     }
                 }
-            }
 
             } else {
                 /*$this->dispatch('message',
