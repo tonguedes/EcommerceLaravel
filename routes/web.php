@@ -5,22 +5,14 @@ use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+
 
 /*Route::get('/', function () {
     return view('welcome');
@@ -32,7 +24,9 @@ Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::c
 
 
 Route::middleware(['auth'])->group(function (){
+
     Route::get('wishlist',[WishlistController::class,'index']);
+    Route::get('cart',[CartController::class,'index']);
 });
 
 
