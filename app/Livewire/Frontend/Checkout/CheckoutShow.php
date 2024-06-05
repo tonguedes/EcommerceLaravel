@@ -30,19 +30,20 @@ class CheckoutShow extends Component
 
     public function codOrder()
     {
-        //$this->validate();
+        $this->validate();
         $this->payment_mode = 'Pagamento na entrega';
         $codOrder = $this->placeOrder();
         if($codOrder){
 
             Cart::where('user_id',auth()->user()->id)->delete();
+
             session()->flash('message','Ordem feita  com sucesso!');
          $this->dispatch('message',[
                 'text' => "Ordem feita  com sucesso!",
                 'type'=>'success',
                 'status'=>200,
                ]);
-               return redirect()->to('Obrigado!');
+               return redirect()->to('thank-you');
         }else{
             session()->flash('message','algo deu errado!');
             $this->dispatch('message',[
@@ -75,11 +76,19 @@ class CheckoutShow extends Component
                 'product_id'=>$cartItem->product_id,
                 'product_color_id'=>$cartItem->product_color_id,
                 'quantity'=>$cartItem->quantity,
-                'price'=>$cartItem->product->selling_price
+              'price'=>$cartItem->product->selling_price
 
             ]);
 
-            $this->totalProductAmount += $cartItem->product->selling_price * $cartItem->quantity;
+            if($cartItem->product_color_id != NULL){
+
+                $cartItem->productColor()->where('id',$cartItem->product_color_id)->decrement('quantity',$cartItem->quantity);
+            }else{
+                $cartItem->product()->where('id',$cartItem->product_id)->decrement('quantity',$cartItem->quantity);
+            }
+
+
+            //$this->totalProductAmount += $cartItem->product->selling_price * $cartItem->quantity;
         }
 
         return $order;
@@ -89,6 +98,7 @@ class CheckoutShow extends Component
     }
     public function totalProductAmount()
     {
+        $this->totalProductAmount = 0;
         $this->carts = Cart::where('user_id', auth()->user()->id)->get();
         foreach ($this->carts as $cartItem) {
             $this->totalProductAmount += $cartItem->product->selling_price * $cartItem->quantity;

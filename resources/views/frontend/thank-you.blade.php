@@ -6,6 +6,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
+                    @if (session('message'))
+                      <h5 class="alert alert-sucess">{{ session('message') }}</h5>
+                    @endif
                     <div class="p-4 shadow bg-white">
                         <h2>Logo</h2>
                         <h4>Obrigado por comprar conosco </h4>
