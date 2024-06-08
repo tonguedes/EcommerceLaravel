@@ -34,6 +34,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' }}">
     @livewireStyles
+
 </head>
 
 <body>
@@ -45,16 +46,23 @@
             @yield('content')
         </main>
     </div>
-</body>
+
 <script src="{{ asset('https://code.jquery.com/jquery-3.7.1.js') }}"></script>
 <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js') }}"></script>
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
 <script>
-   /* window.addEventListener('message', event => {
-        alertify.set('notifier', 'position', 'top-right');
+    window.addEventListener('message', event => {
+      if(event.detail)
+      {
+       alertify.set('notifier', 'position', 'top-right');
         alertify.notify(event.detail.text , event.detail.type);
-    });*/
-</script>
-@livewireScripts
 
+      }
+
+    })
+</script>
+
+@livewireScripts
+@stack('scripts')
+</body>
 </html>

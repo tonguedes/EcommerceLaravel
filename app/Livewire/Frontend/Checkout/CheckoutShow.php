@@ -5,6 +5,7 @@ namespace App\Livewire\Frontend\Checkout;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Orderitem;
+use Illuminate\Auth\Events\Validated;
 use Livewire\Component;
 use PhpParser\Node\Stmt\Foreach_;
 use Illuminate\Support\Str;
@@ -15,6 +16,42 @@ class CheckoutShow extends Component
 
     public $fullname,$email,$phone,$pincode,$address,$payment_mode=NULL,$payment_id = NULL;
 
+    protected $listeners =[
+        'validationForAll',
+        'transactionEmit' => 'paidOnlineOrder'
+    ];
+
+    public function paidOnlineOrder($value)
+    {
+        $this->payment_id = $value;
+        $this->payment_mode = 'Pagamento via Paypal';
+        $codOrder = $this->placeOrder();
+        if($codOrder){
+
+            Cart::where('user_id',auth()->user()->id)->delete();
+
+            session()->flash('message','Ordem feita  com sucesso!');
+         $this->dispatch('message',[
+                'text' => "Ordem feita  com sucesso!",
+                'type'=>'success',
+                'status'=>200,
+               ]);
+               return redirect()->to('thank-you');
+        }else{
+            session()->flash('message','algo deu errado!');
+            $this->dispatch('message',[
+                'text' => "algo deu errado!",
+                'type'=>'error',
+                'status'=>500,
+               ]);
+        }
+    }
+
+    public function validationForAll()
+    {
+        $this->validate();
+    }
+
     public function rules()
     {
         return[
@@ -23,8 +60,6 @@ class CheckoutShow extends Component
             'phone'=>'required|string|max:11|min:10',
             'pincode'=>'required|string|max:6|min:6',
             'address'=>'required|string|max:500'
-
-
         ];
     }
 
