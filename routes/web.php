@@ -90,6 +90,15 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
         Route::put('/colors/{color_id}', 'update');
         Route::get('/colors/{color}/delete', 'destroy');
     });
+
+    //admin/orders
+    Route::controller(\App\Http\Controllers\Admin\OrdersController::class)->group(function () {
+        Route::get('/orders', 'index');
+        Route::get('/orders/{order_Id}', 'show');
+    });
+
+
+
     //Route::get('category',[CategoryController::class, 'index']);
     //Route::get('category/create',[CategoryController::class, 'create']);
     //Route::post('category',[CategoryController::class, 'store']);

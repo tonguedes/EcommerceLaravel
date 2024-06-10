@@ -1,15 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('title', 'My Orders Details')
 @section('content')
 
-    <div class="py-3 py-md-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>My Order Details
+                    </h3>
+                </div>
+                <div class="card-body">
                     <div class="shadow bg-white p-3">
                         <h6 class="text-primary">
-                            <i class="fa fa-shopping-cart text-dark"></i>Detalhes do Pedido
-                            <a href="{{ url('orders') }}" class="btn btn-danger btn-sm float-end">Voltar</a>
+                            <i class="fa fa-shopping-cart text-dark"></i>Detalhe do Pedido
+                            <a href="{{ url('admin/orders') }}" class="btn btn-danger btn-sm float-end">Voltar</a>
                         </h6>
                         <hr>
                         <div class="row">
@@ -92,6 +96,7 @@
 
 
                     </div>
+                </div>
                 </div>
             </div>
         </div>
