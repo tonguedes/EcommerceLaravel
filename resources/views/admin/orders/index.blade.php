@@ -11,6 +11,33 @@
                 </div>
                 <div class="card-body">
 
+                    <form action="" method="GET">
+                        <div class="row">
+                        <div class="col-md-3">
+                            <label>FIltrar por Data</label>
+                            <input type="date" name="date" value="{{ Request::get('date')?? date('Y-m-d') }}" class="text form-control">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label>FIltrar por Status</label>
+                            <select name="status" class="form-select">
+
+                                <option value="">Select Status</option>
+                                <option value="em progresso" {{ Request::get('status') == 'em progresso' ? 'selected' : ''}}>em progresso</option>
+                                <option value="completo" {{ Request::get('status') == 'completo' ? 'selected' : ''}}>Completo</option>
+                                <option value="pending" {{ Request::get('status') == 'pending' ? 'selected' : ''}}>Pending</option>
+                                <option value="cancelled"{{ Request::get('status') == 'cancelled' ? 'selected' : ''}}>cancelled</option>
+                                <option value="out-of-delivery"{{ Request::get('status') == 'out-of-delivery' ? 'selected' : ''}}>out-of-delivery</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <br>
+                            <button type="submit" class="btn btn-primary">Filtrar</button>
+                        </div>
+                    </div>
+                    </form>
+                    <hr>
 
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
