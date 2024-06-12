@@ -4,6 +4,11 @@
 
     <div class="row">
         <div class="col-md-12">
+
+            @if(session('message'))
+                <div class="alert alert-success mb-3">{{ session('message') }}</div>
+            @endif
+
             <div class="card">
                 <div class="card-header">
                     <h3>My Order Details
@@ -97,6 +102,38 @@
 
                     </div>
                 </div>
+                </div>
+            </div>
+
+            <div class="card border mt-3">
+                <div class="card-body">
+                    <h4>Ordem de pedido(status)</h4>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <form action="{{ url('admin/orders/'.$order->id) }}" method="post">
+                                @csrf
+                                @method('Put')
+                                 <label>Atualize seu Status</label>
+                                 <div class="input-group">
+                                    <select name="order_status" class="form-select">
+                                        <option value="">Select Order  Status</option>
+                                        <option value="em progresso" {{ Request::get('status') == 'em progresso' ? 'selected' : ''}}>em progresso</option>
+                                        <option value="completo" {{ Request::get('status') == 'completo' ? 'selected' : ''}}>Completo</option>
+                                        <option value="pending" {{ Request::get('status') == 'pending' ? 'selected' : ''}}>Pending</option>
+                                        <option value="cancelled"{{ Request::get('status') == 'cancelled' ? 'selected' : ''}}>cancelled</option>
+                                        <option value="out-of-delivery"{{ Request::get('status') == 'out-of-delivery' ? 'selected' : ''}}>out-of-delivery</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary text-white">Update</button>
+                                 </div>
+                                 <div class="col-md-7">
+                                    <br>
+                                    <h4 class="mt-3">Current order Status: <span class="text-uppercase">{{ $order->status_message }}</span></h4>
+                                 </div>
+
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -14,7 +14,7 @@ class OrdersController extends Controller
         //$orders = Order::whereDate('created_at',$todayDate)->paginate(10 );
         $todayDate = Carbon::now()->format('Y-m-d');
         $orders = Order::when($request->date != null, function ($q) use ($request) {
-            
+
             return $q->whereDate('created_at', $request->date);
         }, function ($q) use ($todayDate) {
             return $q->whereDate('created_at', $todayDate);
@@ -37,7 +37,21 @@ class OrdersController extends Controller
         } else {
             return redirect('admin/orders')->with('message', 'sem Id da Ordem');
         }
-        return view('admin.orders.index', compact('orders'));
+    }
+
+    public function updateOrderStatus(int $orderId, Request $request)
+    {
+       $order = Order::where('id',$orderId)->first();
+       if($order){
+
+          $order->update([
+                'status_message' => $request->order_status
+          ]);
+
+          return redirect('admin/orders/'.$orderId)->with('message'.'Order Status updated');
+       }else{
+        return redirect('admin/orders/'.$orderId)->with('message'.'Order Idd not found');
+       }
     }
 
 }
