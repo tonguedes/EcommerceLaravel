@@ -13,6 +13,11 @@
     <meta name="description" content="@yield('meta_description')">
     <meta name="keywords" content="@yield('meta_description')">
 
+    <!-- OLW-2 cassousel -->
+    <link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet">
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -47,22 +52,24 @@
         </main>
     </div>
 
-<script src="{{ asset('https://code.jquery.com/jquery-3.7.1.js') }}"></script>
-<script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js') }}"></script>
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
-<script>
-    window.addEventListener('message', event => {
-      if(event.detail)
-      {
-       alertify.set('notifier', 'position', 'top-right');
-        alertify.notify(event.detail.text , event.detail.type);
+    <script src="{{ asset('https://code.jquery.com/jquery-3.7.1.js') }}"></script>
+    <script src="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
+    <script>
+        window.addEventListener('message', event => {
+            if (event.detail) {
+                alertify.set('notifier', 'position', 'top-right');
+                alertify.notify(event.detail.text, event.detail.type);
 
-      }
+            }
 
-    })
-</script>
+        })
+    </script>
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    @yield('script')
 
-@livewireScripts
-@stack('scripts')
+    @livewireScripts
+    @stack('scripts')
 </body>
+
 </html>
