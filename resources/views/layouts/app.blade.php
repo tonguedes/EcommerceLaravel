@@ -17,6 +17,9 @@
     <link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet">
 
+       <!-- OLW-2 cassousel -->
+       <link href="{{ asset('assets/exzoom/jquery.exzoom.css') }}" rel="stylesheet">
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -66,6 +69,7 @@
         })
     </script>
     <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/exzoom/jquery.exzoom.js') }}"></script>
     @yield('script')
 
     @livewireScripts
