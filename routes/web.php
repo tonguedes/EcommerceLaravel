@@ -18,10 +18,16 @@ use Illuminate\Support\Facades\Route;
 /*Route::get('/', function () {
     return view('welcome');
 });*/
+
+Auth::routes();
+
+
+
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/collections', [FrontendController::class, 'categories']);
 Route::get('/collections/{category_slug}', [FrontendController::class, 'products']);
 Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::class, 'productView']);
+Route::get('/new-arrivals',[FrontendController::class, 'newArrival']);
 
 
 Route::middleware(['auth'])->group(function (){
@@ -40,7 +46,7 @@ Route::get('thank-you',[FrontendController::class, 'thankyou']);
 
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

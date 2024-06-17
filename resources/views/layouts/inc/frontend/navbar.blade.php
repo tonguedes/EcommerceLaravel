@@ -65,7 +65,7 @@
                                 <i class="fa fa-user"></i>   {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Perfil</a></li>
                             <li><a class="dropdown-item" href="#"><i class="fa fa-list"></i> My Orders</a></li>
                             <li><a class="dropdown-item" href="#"><i class="fa fa-heart"></i> My Wishlist</a></li>
                             <li><a class="dropdown-item" href="#"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
@@ -105,10 +105,10 @@
                         <a class="nav-link" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/collections') }}">All Categories</a>
+                        <a class="nav-link" href="{{ url('/collections') }}">Categorias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/new-arrivals') }}">New Arrivals</a>
+                        <a class="nav-link" href="{{ url('/new-arrivals') }}">Lançamentos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Featured Products</a>
