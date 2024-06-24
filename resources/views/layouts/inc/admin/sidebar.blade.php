@@ -81,5 +81,12 @@
           <span class="menu-title">Home Slider</span>
         </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('admin/settings') }}">
+          <i class="mdi mdi-view-carousel  menu-icon"></i>
+          <span class="menu-title">Site Sething</span>
+        </a>
+      </li>
     </ul>
   </nav>

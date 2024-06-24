@@ -53,6 +53,7 @@
         <main>
             @yield('content')
         </main>
+        @include('layouts.inc.frontend.footer')
     </div>
 
     <script src="{{ asset('https://code.jquery.com/jquery-3.7.1.js') }}"></script>

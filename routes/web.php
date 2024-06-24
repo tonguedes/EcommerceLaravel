@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -27,7 +27,10 @@ Route::get('/', [FrontendController::class, 'index'])->name('index');
 Route::get('/collections', [FrontendController::class, 'categories']);
 Route::get('/collections/{category_slug}', [FrontendController::class, 'products']);
 Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::class, 'productView']);
+
+
 Route::get('/new-arrivals',[FrontendController::class, 'newArrival']);
+Route::get('/featured-products',[FrontendController::class, 'featuredProducts']);
 
 
 Route::middleware(['auth'])->group(function (){
@@ -54,6 +57,8 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index']);
     Route::get('/brands', App\Livewire\Admin\Brand\Index::class);
 
+    Route::get('settings',[SettingController::class, 'index']);
+    Route::post('settings',[SettingController::class, 'store']);
 
     Route::controller(SliderController::class)->group(function () {
         Route::get('sliders', 'index');
