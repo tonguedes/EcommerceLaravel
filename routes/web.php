@@ -33,6 +33,8 @@ Route::get('/collections/{category_slug}/{product_slug}', [FrontendController::c
 Route::get('/new-arrivals',[FrontendController::class, 'newArrival']);
 Route::get('/featured-products',[FrontendController::class, 'featuredProducts']);
 
+Route::get('search',[FrontendController::class, 'searchProducts']);
+
 
 Route::middleware(['auth'])->group(function (){
 

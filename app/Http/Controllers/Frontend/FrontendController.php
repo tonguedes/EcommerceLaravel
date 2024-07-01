@@ -25,6 +25,17 @@ class FrontendController extends Controller
         return view('frontend.pages.new-arrival',compact('newArrivalProducts'));
     }
 
+    public function searchProducts(Request $request)
+    {
+        if($request->search){
+            $searchProducts = Product::where('name','LIKE', '%'.$request->search.'%')->latest()->paginate(15);
+            return view('frontend.pages.search',compact('searchProducts'));
+        }else{
+                return redirect()->back()->with('message','Empty Search');
+        }
+
+    }
+
     public function featuredProducts()
     {
         $featuredProducts = Product::where('featured', '1')->latest()->get();
@@ -62,7 +73,7 @@ class FrontendController extends Controller
             }
 
         }else{
-            return redirect()->back();
+
         }
 
     }
