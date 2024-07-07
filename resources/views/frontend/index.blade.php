@@ -22,7 +22,7 @@
                                 {{ $sliderItem->description }}
                             </p>
                             <div>
-                                <a href="#" class="btn btn-slider">
+                                <a href="{{ url('collections') }}" class="btn btn-slider">
                                     Get Now
                                 </a>
                             </div>
@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h4>Trending Products
-                   
+
                     </h4>
                     <div class="underline mb-4"></div>
                 </div>
